@@ -7,6 +7,7 @@
     "dev:frontend": "vite",
     "backend:dev": "cd backend && npm run dev",
     "backend:start": "cd backend && npm start",
+    "start": "cd backend && npm start",
     "build": "vite build",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
