@@ -11,7 +11,6 @@ const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
-// Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(__dirname, "..", "uploads");
@@ -30,7 +29,6 @@ const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: (req, file, cb) => {
-    // If no file is uploaded, skip validation
     if (!file) {
       return cb(null, true);
     }
@@ -44,12 +42,11 @@ const upload = multer({
     if (mimetype && extname) {
       return cb(null, true);
     } else {
-      return cb(null, false); // Reject file but don't throw error
+      return cb(null, false);
     }
   },
 });
 
-// Submit a review
 router.post(
   "/",
   (req, res, next) => {
@@ -69,7 +66,6 @@ router.post(
     try {
       const { product_id, username, rating, review_text } = req.body;
 
-      // Validation
       if (!product_id || !username || !rating) {
         console.log("Validation failed:", { product_id, username, rating });
         return res
@@ -84,7 +80,6 @@ router.post(
           .json({ error: "Rating must be between 1 and 5" });
       }
 
-      // Check if user already reviewed this product
       const existingReview = await db.get(
         "SELECT id FROM reviews WHERE product_id = ? AND username = ?",
         [product_id, username],
@@ -96,21 +91,16 @@ router.post(
           .json({ error: "You have already reviewed this product" });
       }
 
-      // Extract tags from review text (simple keyword extraction)
       const tags = extractTags(review_text);
       console.log("Extracted tags:", tags);
-
-      // Handle image upload
       let imageUrl = null;
       if (req.file) {
         imageUrl = `/uploads/${req.file.filename}`;
       }
 
-      // Prepare tags for database
       const tagsToStore = tags && tags.length > 0 ? JSON.stringify(tags) : null;
       console.log("Tags to store:", tagsToStore);
 
-      // Insert review
       try {
         const result = await db.run(
           `INSERT INTO reviews (product_id, username, rating, review_text, image_url, tags)
@@ -164,7 +154,6 @@ router.post(
   },
 );
 
-// Get reviews for a product
 router.get("/product/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
@@ -185,7 +174,6 @@ router.get("/product/:productId", async (req, res) => {
   }
 });
 
-// Check if user can review a product
 router.get("/can-review/:productId/:username", async (req, res) => {
   try {
     const { productId, username } = req.params;
@@ -202,7 +190,6 @@ router.get("/can-review/:productId/:username", async (req, res) => {
   }
 });
 
-// Simple tag extraction function
 function extractTags(text) {
   if (!text || typeof text !== "string") return [];
 

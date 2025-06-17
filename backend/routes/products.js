@@ -3,7 +3,6 @@ import { db } from "../database.js";
 
 const router = express.Router();
 
-// Get all products with average ratings
 router.get("/", async (req, res) => {
   try {
     const products = await db.all(`
@@ -24,7 +23,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get single product with reviews
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;

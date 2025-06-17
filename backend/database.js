@@ -1,7 +1,6 @@
 import sqlite3 from "sqlite3";
 import { promisify } from "util";
 
-// Enable verbose mode for debugging
 const db = new sqlite3.Database("./fitness_books.db", (err) => {
   if (err) {
     console.error("Database connection error:", err);
@@ -10,7 +9,6 @@ const db = new sqlite3.Database("./fitness_books.db", (err) => {
   }
 });
 
-// Promisify database methods
 const originalRun = db.run.bind(db);
 const originalGet = db.get.bind(db);
 const originalAll = db.all.bind(db);
@@ -21,7 +19,6 @@ db.all = promisify(originalAll);
 
 export async function initDatabase() {
   try {
-    // Create products table
     await db.run(`
       CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,7 +32,6 @@ export async function initDatabase() {
       )
     `);
 
-    // Create reviews table
     await db.run(`
       CREATE TABLE IF NOT EXISTS reviews (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -51,13 +47,11 @@ export async function initDatabase() {
       )
     `);
 
-    // Insert sample fitness books if table is empty
     const productCount = await db.get("SELECT COUNT(*) as count FROM products");
     if (productCount.count === 0) {
       await insertSampleProducts();
     }
 
-    // Insert sample reviews if table is empty
     const reviewCount = await db.get("SELECT COUNT(*) as count FROM reviews");
     if (reviewCount.count === 0) {
       await insertSampleReviews();
