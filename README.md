@@ -2,6 +2,9 @@
 
 A full-stack web application for rating and reviewing fitness books. Users can browse a curated collection of fitness books, write reviews, submit ratings, and upload photos with their reviews.
 
+## App is live on...
+- **https://review-rating-system.netlify.app/**
+
 ## Features
 
 ### ✅ Core Features
@@ -15,7 +18,7 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 - **Average Ratings**: Real-time calculation of average ratings
 - **Responsive Design**: Fully responsive across all device sizes
 
-### 🎨 Design Features
+###  Design Features
 
 - Modern fitness-themed design with green and orange color palette
 - Interactive star ratings
@@ -24,7 +27,7 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 - Gradient backgrounds and buttons
 - Clean typography and spacing
 
-### 🔧 Technical Features
+###  Technical Features
 
 - **Frontend**: React 18 with TypeScript, React Router, TailwindCSS
 - **Backend**: Node.js with Express.js
@@ -43,8 +46,6 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 - **React Router 6**: Client-side routing
 - **TailwindCSS**: Utility-first CSS framework
 - **Radix UI**: Accessible UI primitives
-- **Lucide React**: Beautiful icon library
-- **Sonner**: Toast notifications
 - **React Query**: Server state management
 - **Vite**: Fast development and build tool
 
@@ -58,6 +59,9 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 - **UUID**: Unique identifier generation
 
 ## Getting Started
+
+### Live-Link
+- **https://review-rating-system.netlify.app/**
 
 ### Prerequisites
 
@@ -154,102 +158,15 @@ npm run typecheck
 - `created_at` (DATETIME)
 - `UNIQUE(product_id, username)` - Prevents duplicate reviews
 
-## Key Features Implementation
+### App Screenshots
 
-### User Management
+![Screenshot (85)](https://github.com/user-attachments/assets/aa5d0c2f-1680-4292-8c03-6123f814ebca)
 
-- Simple username-based system stored in localStorage
-- No complex authentication needed
-- Users identified by username for review tracking
+![Screenshot (86)](https://github.com/user-attachments/assets/218e170e-c31f-4a24-b9c9-c134b420b0c8)
 
-### Review System
+![Screenshot (87)](https://github.com/user-attachments/assets/9cc8bc1b-95e1-40fe-8440-7e0dbb697673)
 
-- Star ratings (1-5) with interactive UI
-- Optional text reviews
-- Optional photo uploads (5MB limit)
-- Automatic tag extraction from review text
-- Real-time average rating calculation
+![Screenshot (88)](https://github.com/user-attachments/assets/1b6a21d8-7767-4dd4-99af-f4ea1eac5078)
 
-### Image Uploads
+![Screenshot (89)](https://github.com/user-attachments/assets/c393946c-5a80-4afa-bb42-1aa81fc69cfa)
 
-- Secure file upload with validation
-- Image type checking (JPEG, JPG, PNG, GIF)
-- File size limits (5MB)
-- Unique filename generation with UUID
-
-### Responsive Design
-
-- Mobile-first design approach
-- Responsive grid layouts
-- Touch-friendly interactive elements
-- Optimized for all screen sizes
-
-## Customization
-
-### Changing to MySQL
-
-To switch from SQLite to MySQL:
-
-1. Install MySQL driver:
-
-   ```bash
-   cd backend
-   npm install mysql2
-   ```
-
-2. Update `backend/database.js`:
-
-   ```javascript
-   import mysql from "mysql2/promise";
-
-   const connection = await mysql.createConnection({
-     host: "localhost",
-     user: "your_username",
-     password: "your_password",
-     database: "fitness_books",
-   });
-   ```
-
-### Adding New Product Categories
-
-Update the sample data in `backend/database.js` and modify the category validation as needed.
-
-### Customizing the Theme
-
-Modify the color palette in `tailwind.config.ts` and `src/index.css` to match your brand colors.
-
-## Production Deployment
-
-1. **Build the frontend**:
-
-   ```bash
-   npm run build
-   ```
-
-2. **Set up environment variables**:
-
-   ```bash
-   export PORT=3002
-   export NODE_ENV=production
-   ```
-
-3. **Start the backend**:
-
-   ```bash
-   cd backend
-   npm start
-   ```
-
-4. **Serve the frontend** using a static file server like nginx or serve the built files through your backend.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
