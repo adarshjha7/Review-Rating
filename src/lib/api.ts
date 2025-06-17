@@ -1,4 +1,11 @@
-const API_BASE_URL = "/api";
+// const API_BASE_URL = "/api";
+declare const __APP_BACKEND__: string;
+
+const API_BASE_URL =
+  typeof __APP_BACKEND__ !== "undefined"
+    ? __APP_BACKEND__ + "/api"
+    : "http://localhost:3002/api";
+
 
 export interface Product {
   id: number;
