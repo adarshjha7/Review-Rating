@@ -18,14 +18,6 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 - **Average Ratings**: Real-time calculation of average ratings
 - **Responsive Design**: Fully responsive across all device sizes
 
-###  Design Features
-
-- Modern fitness-themed design with green and orange color palette
-- Interactive star ratings
-- Smooth animations and hover effects
-- Card-based layouts with beautiful shadows
-- Gradient backgrounds and buttons
-- Clean typography and spacing
 
 ###  Technical Features
 
