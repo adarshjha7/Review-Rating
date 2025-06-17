@@ -5,7 +5,9 @@ A full-stack web application for rating and reviewing fitness books. Users can b
 ## App is live on...
 - **https://review-rating-system.netlify.app/**
 
-## Features
+
+### Responsive..
+- App is responsive on both Desktop and Android devices.
 
 ### ✅ Core Features
 
